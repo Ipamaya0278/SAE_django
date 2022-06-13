@@ -1,0 +1,11 @@
+{% block content %}
+
+<h1>{{ message }}</h1>
+<center>
+    <form method="post" action="{% url 'create' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+</center>
+{% endblock %}
