@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head >
+        {% block title %}
+        <title> IT Management </title>
+        {% endblock %}
+        <meta charset= " utf-8 ">
+        <meta name= " viewport "
+        content= " width=device-width,initial-scale=1">
+        <!-- On ajoute un fichier CSS depuis les static -->
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %} " >
+    </head>
+    <body>
+        {% block menu %}
+        <h1> R&T Dev</h1>
+            {% block sidebar %}
+                <h2> Menu</h2>
+                <ul id="menu">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'machine' %}">Machines</a></li>
+                    <li><a href="{% url 'employe' %}">Personnel</a></li>
+                </ul>
+            {% endblock %}
+        {% endblock %}
+
+        <!-- On ajoute image ici depuis les statics -->
+{% load static %}
+<img src= "{% static 'reviews/images/rtdev.png' %} "
+alt= " logo " style= "width:200px;height:200px;">
+
+
+        {% block content %}
+            Bienvenue {{username}}, 
+        Je vous présente le projet IT Management, cela permet à l'entreprise de mieux gérer sa partie DSI pour un avenir proche. 
+        
+        {% endblock %}
+
+    </body>
+</html>
