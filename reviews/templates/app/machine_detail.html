@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h1 style="margin-left: 30px;"> Nom: {{ machine.nom }} </h1>
+
+    <p style="margin-left: 30px;"><strong>Maintenance</strong> : {{ machine.maintenanceDate}}</a></p>
+    <p style="margin-left: 30px;"><strong>Type de machine</strong > : {{ machine.mach }}</p>
+    <p style="margin-left: 30px;"><strong>Infrastructure</strong> : {{ machine.infra }}</p>
+    <button type="button" class="btn btn-success" href="../app/machine_add.html">Ajouter</button>
+    <button type="button" class="btn btn-warning" hre>Modifier</button>
+    <button type="button" class="btn btn-danger">Supprimer</button>
+{% endblock %}

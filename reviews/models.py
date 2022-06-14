@@ -1,4 +1,5 @@
 from email.policy import default
+from random import choices
 from unicodedata import name
 from django.db import models
 from flask_sqlalchemy import Model
@@ -42,7 +43,7 @@ class Machine(models.Model):
     )
 
     def __str__(self):
-        return str(self.id) + " -> " + self.nom
+        return str(self.id) + " / " + self.nom  +  " / " + self.infra
 
     def get_name(self): 
         return str(self.id) + " " + self.nom
@@ -52,6 +53,10 @@ class Personnel(models.Model):
     TYPE = (
         ('Siege',('Poitiers')),
         ('Filiale',('Châtellerault')),
+    )
+    TYPE2 = (
+        ('Employe',('Filiale')),
+        ('Manager',('Siege')),
     )
     num_secu =models.CharField(
         primary_key=True,
@@ -64,14 +69,19 @@ class Personnel(models.Model):
     prenom = models.CharField(
         max_length=50
     )
+    personne = models.CharField(
+        max_length=20,
+        choices=TYPE2,
+        default='Employe'
+    )
     infra = models.CharField(
         max_length=20,
         choices=TYPE,
         default='Siege'
     )
+    mach = models.ForeignKey(Machine, default=None, null=True, on_delete=models.SET_NULL)
     def __str__(self):
-        return str(self.num_secu) + "  /  " + self.nom + "  /  " + self.prenom
-
+        return str(self.num_secu )+ "  /  " + self.nom + "  /  " + self.prenom + "  /  " + self.infra
 
 
 status_choice = (('approved','APPROVED'),('pending','PENDING'),('rejected','REJECTED'))
@@ -83,7 +93,7 @@ class Review(models.Model):
             max_length=10,choices=status_choice,default='pending'
         )
     nom = models.ForeignKey(Personnel,on_delete=models.CASCADE)
-    mach = models.ForeignKey(Machine, on_delete=models.CASCADE)
+    mach = models.ForeignKey(Machine,default=None, null=True, on_delete=models.SET_NULL)
     maintenanceDate = models.DateTimeField()
     
     def __str__(self):

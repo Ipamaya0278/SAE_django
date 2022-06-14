@@ -5,4 +5,11 @@
     <p> <strong> Id</strong> : {{ Personnel.id }} </a> </p>
     <p> <strong> Date de maintenance :</strong> {{ Personnel.maintenanceDate }} </p>
     <p> <strong> Machine :</strong> {{ Personnel.mach }} </p>
+    <p><strong>Infrastructure :</strong>{{Personnel.infra}}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.perso }}
+        <input type="submit" value="Submit">
+        </form>
 {% endblock %}

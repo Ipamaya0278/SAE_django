@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+{% block content %}
+    
+    {% if persos %}
+<div class="pure-g">
+    <div class="pure-u-7-8">
+        <div class="container">
+            <div class="machines">
+                <h1 style="text-align: center;">Liste du Personnel</h1>
+            </div>
+                    
+            <table class="pure-table pure-table-striped table" style="width: auto; margin-left: 40px ;">
+                {% for perso in persos %} 
+                <thread>
+                    <tr>
+                        <th>Numéro de sécurité sociale</th>
+                        <th>Nom</th>
+                    <tr>
+                </thread>
+                <tbody>
+                    <tr>
+                        <td><a href="{% url 'perso-detail' perso.num_secu   %}">{{perso.num_secu}}</a></td>
+                        <td>{{perso.nom}}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+    {% else %}
+        <p>Il n'y a pas de personnes enregistrées.</p >
+    {% endif %}
+{% endblock %}

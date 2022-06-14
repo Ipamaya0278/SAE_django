@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h1 style="margin-left: 30px;"> Nom: {{ perso.nom }} </h1>
+
+    <p style="margin-left: 30px;"><strong>Numéro de Sécurité Sociale</strong> : {{ perso.num_secu}}</a></p>
+    <p style="margin-left: 30px;"><strong>Type de personnel</strong > : {{ perso.personne }}</p>
+    <p style="margin-left: 30px;"><strong>Infrastructure</strong> : {{ perso.infra }}</p>
+
+    <button type="button" class="btn btn-success" href="#">Ajouter</button>
+    <button type="button" class="btn btn-warning">Modifier</button>
+    <button type="button" class="btn btn-danger">Supprimer</button>
+{% endblock %}

@@ -7,34 +7,111 @@
         <meta charset= " utf-8 ">
         <meta name= " viewport "
         content= " width=device-width,initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <!-- On ajoute un fichier CSS depuis les static -->
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/style.css' %} " >
     </head>
     <body>
-        {% block menu %}
-        <h1> R&T Dev</h1>
-            {% block sidebar %}
-                <h2> Menu</h2>
-                <ul id="menu">
-                    <li><a href="{% url 'index' %}">Home</a></li>
-                    <li><a href="{% url 'machine' %}">Machines</a></li>
-                    <li><a href="{% url 'employe' %}">Personnel</a></li>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px;">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+              <!-- Toggle button -->
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                  <i class="fas fa-bars"></i>
+              </button>
+          
+              <!-- Collapsible wrapper -->
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                {% block menu %}
+                <a class="navbar-brand mt-2 " href="{% url 'index' %}">
+                    {% load static %}
+                  <img
+                    src="{% static 'images/rtdev.png' %}"
+                    height= "100px"
+                    style="padding-bottom :15px;"
+                    alt="RT Dev"
+                    loading="lazy"/>
+                </a>
+                <!-- Left links -->
+                {% block sidebar %}                
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-align-center" style="padding-top : 30px;">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'machines' %}" style="padding-left: 40px;"><h3>Machines<h3></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'perso' %}" style="padding-left: 40px;"><h3>Employés</h3></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}" style="padding-left: 40px;"><h3>Se connecter</h3></a>
+                  </li>
                 </ul>
+                {% endblock %}
             {% endblock %}
-        {% endblock %}
+                <!-- Left links -->
+              </div>
+              <!-- Right elements -->
+            </div>
+            <!-- Container wrapper -->
+          </nav>
+          <!-- Navbar -->
+          
 
         <!-- On ajoute image ici depuis les statics -->
-{% load static %}
-<img src= "{% static 'reviews/images/rtdev.png' %} "
-alt= " logo " style= "width:200px;height:200px;">
+        
 
 
         {% block content %}
-            Bienvenue {{username}}, 
-        Je vous présente le projet IT Management, cela permet à l'entreprise de mieux gérer sa partie DSI pour un avenir proche. 
-        
-        {% endblock %}
 
+        {% load static %}
+        <img
+        src="{% static 'images/batiment.jpg' %}"
+        width="auto"
+        style="padding-bottom :15px; height: 445px;"
+        alt="batiment"
+        loading="lazy"/>
+        <img
+        src="{% static 'images/reunion.jpg' %}"
+        width="auto"
+        style="padding-bottom :15px;"
+        alt="batiment"
+        loading="lazy"/>
+           <h1 style="margin-left: 15px;"> Bienvenue {{Personnel.nom}}, </h1>
+        <p style="margin-left: 40px;">Je vous présente le projet IT Management, cela permet à l'entreprise de mieux gérer sa partie DSI pour un avenir proche. </p>
+        
+        <section id="contact" class="contact-clean" style="margin-top: 300px;margin-bottom: 200px; background-color: #18456f;; ">
+          <form action="../mail.php" method="post">
+          <h2 class="text-center" style="font-family: Alatsi, sans-serif;font-size: 40px; color : white;">Contactez-nous</h2>
+          <div class="form-group"><input class="form-control" type="text" required name="name" placeholder="Nom"></div>
+          <div class="form-group"><input class="form-control" requiredtype="email" name="email" placeholder="Email"></div>
+          <div class="form-group"><textarea class="form-control" name="message" required placeholder="Message" rows="14"></textarea></div>
+          <div class="form-group"><input class="btn btn-primary" name="contact" type="submit" style="background: red;height:50px; color : black"></input></div>
+          </form>
+      </section>
+
+        {% endblock %}
+        <footer class="text-center text-white" style=" bottom: 0; position: fixed; width : 100%; ">
+          <!-- Grid container -->
+          <div class="container pt-4">
+            <!-- Section: Social media -->
+            <!-- Section: Social media -->
+          </div>
+          <!-- Grid container -->
+        
+          <!-- Copyright -->
+          <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+              © 2022 Copyright:
+            <a class="text-dark">RT Development</a>
+          </div>
+          <!-- Copyright -->
+        </footer>
     </body>
 </html>

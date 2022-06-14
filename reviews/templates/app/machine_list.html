@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+
+{% block content %}
+    
+    {% if machines %}
+<div class="pure-g">
+    <div class="pure-u-7-8">
+        <div class="container">
+            <div class="machines">
+                <h1 style="text-align: center;">Liste des Machines</h1>
+            </div>
+            {% for machine in machines %} 
+            <table class="pure-table pure-table-striped table" style="width: 100%;">
+                <thread>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Infrastructure</th>
+                        <th>Date de maintenance</th>
+                    <tr>
+                </thread>
+                <tbody>
+                    <tr>
+                        <td><a href="{% url 'machine-detail' machine.id%}">{{machine.id}}</a></td>
+                        <td>{{machine.nom}}</td>
+                        <td>{{machine.infra}}</td>
+                        <td>{{machine.maintenanceDate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endfor %}
+    {% else %}
+        <p>Il n'y a pas de Machines enregistrées.</p >
+    {% endif %}
+{% endblock %}

@@ -23,6 +23,6 @@ class MachineAdmin(admin.ModelAdmin) :
 admin.site.unregister(Group)
 admin.site.unregister(User)
 admin.site.register(Machine, MachineAdmin)
-admin.site.register(Personnel)
+admin.site.register(Personnel, PersonnelAdmin)
 
  

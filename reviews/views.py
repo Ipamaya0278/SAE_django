@@ -13,8 +13,8 @@ def register(request):
         if form.is_valid():
             form.save()
             user=form.cleaned_data.get('username')
-            messages.sucess(request, 'Le compte a été créé')
-            return redirect('login')
+            messages.success(request, 'Le compte a été créé')
+            return redirect('users/login')
     context = {'form' : form}
     return render(request,'users/register.html', context)
 
@@ -38,22 +38,22 @@ def index(request) :
 
 def machine_list_view(request) :
     machines=Machine.objects.all()
-    context={'machine': machines}
+    context={'machines': machines}
     return render(request, 'app/machine_list.html', context)
 
 def personnel_list_view(request) :
     persos=Personnel.objects.all()
-    context={'employe': persos}
+    context={'persos': persos}
     return render(request, 'app/personnel_list.html', context)
 
 def machine_detail_view(request,pk) :
     machine = get_object_or_404(Machine, id=pk)
-    context = {'machine-detail': machine}
+    context = {'machine' : machine}
     return render(request,'app/machine_detail.html',context)
 
 def personnel_detail_view(request,pk) :
     perso = get_object_or_404(Personnel, num_secu=pk)
-    context = {'employe-detail': perso}
+    context = {'perso': perso}
     return render(request,'app/personnel_detail.html',context)
 
 def machine_add_form(request):
@@ -65,7 +65,7 @@ def machine_add_form(request):
             return redirect('machines')
     else :
         form = AddMachineForm()
-        context = {'form': form}
+        context = {'form-machine': form}
         return render (request ,'app/machine_add.html',context)
 
 def personnel_add_form(request):
@@ -76,18 +76,17 @@ def personnel_add_form(request):
             new_personnel.save()
             return redirect('personnels')
     else :
-        form = AddMachineForm()
-        context = {'form': form}
+        form = AddPersonnelForm()
+        context = {'form-perso': form}
         return render (request ,'app/personnel_add.html',context)
 
 def deleteMachine(request, my_id):
     obj = get_object_or_404(Machine,id=my_id)
     obj.delete()
-    redirect('machine')
+    redirect('machines')
 
 def deletePersonnel(request, my_id):
     obj = get_object_or_404(Personnel,num_secu=my_id)
     obj.delete()
-    redirect('employe')
+    redirect('persos')
     
-
